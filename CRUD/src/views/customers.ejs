@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Management</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilo adicional para mejorar la apariencia */
+        .form-container {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        .table-container {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="my-4">Customer Management</h1>
+        
+        <!-- Formulario -->
+        <div class="form-container">
+            <form action="/add" method="POST" class="form-inline" onsubmit="this.querySelector('button[type=submit]').disabled = true;">
+                <div class="form-group mb-2">
+                    <label for="name" class="sr-only">Nombre:</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" required>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="address" class="sr-only">Dirección:</label>
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Address" required>
+                </div>
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="phone" class="sr-only">Teléfono:</label>
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Phone" required>
+                </div>
+                <button type="submit" class="btn btn-primary mb-2">Agregar</button>
+            </form>
+        </div>
+        
+        <!-- Tabla -->
+        <div class="table-container">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Dirección</th>
+                        <th>Teléfono</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if(data.length > 0) { %>
+                        <% data.forEach(customer => { %>
+                            <tr>
+                                <td><%= customer.id %></td>
+                                <td><%= customer.name %></td>
+                                <td><%= customer.address %></td>
+                                <td><%= customer.phone %></td>
+                                <td>
+                                    <a href="/edit/<%= customer.id %>" class="btn btn-warning btn-sm">Editar</a>
+                                    <a href="/delete/<%= customer.id %>" class="btn btn-danger btn-sm">Eliminar</a>
+                                </td>
+                            </tr>
+                        <% }) %>
+                    <% } else { %>
+                        <tr>
+                            <td colspan="5" class="text-center">No hay clientes disponibles</td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

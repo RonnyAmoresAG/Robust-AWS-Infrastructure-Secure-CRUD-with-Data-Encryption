@@ -10,8 +10,6 @@ Run this project by this command :
 
 Home Page
 
-![Home Page](img/home.png "Home Page")
-
 Add New Customer
 
-![Add New Customer](img/add.png "Add New Customer")
+
